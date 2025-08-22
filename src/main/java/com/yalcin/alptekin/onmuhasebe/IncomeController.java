@@ -1,8 +1,6 @@
 package com.yalcin.alptekin.onmuhasebe;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +19,8 @@ public class IncomeController {
         return incomeService.getAllIncomes();
     }
 
+    @PostMapping
+    public Income addIncome(@RequestBody Income income) {
+        return incomeService.addIncome(income);
+    }
 }

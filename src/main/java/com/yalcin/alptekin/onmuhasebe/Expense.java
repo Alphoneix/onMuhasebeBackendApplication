@@ -5,13 +5,12 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Income {
+public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "income_value")
-    private Double value;
-
+    @Column(name = "expense_amount")
+    private Double amount;
 }

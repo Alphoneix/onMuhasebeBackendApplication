@@ -33,4 +33,7 @@ public class Item {
 
     @Column(name = "payment_frequency_value")
     private Integer paymentFrequencyValue;
+
+    @Column(name = "total_amount")
+    private Double totalAmount;
 }

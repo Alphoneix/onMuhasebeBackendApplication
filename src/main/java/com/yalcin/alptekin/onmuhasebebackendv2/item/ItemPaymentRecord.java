@@ -25,4 +25,7 @@ public class ItemPaymentRecord {
 
     @Column(name = "payment_status") // "YAPILDI", "YAPILMADI", "YAPILMAYACAK"
     private String paymentStatus;
+
+    @Column(name = "amount")
+    private Double amount;
 }

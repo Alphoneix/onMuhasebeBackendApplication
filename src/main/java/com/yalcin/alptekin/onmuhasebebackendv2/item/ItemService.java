@@ -30,21 +30,44 @@ public class ItemService {
         LocalDate current = item.getStartDate();
         LocalDate endDate = calculateEndDate(item);
 
+        int numberOfPayments = 1;
+
+        if ("ONCE".equals(item.getPaymentFrequencyUnit())) {
+            numberOfPayments = 1;
+        } else if ("MONTH".equals(item.getPaymentFrequencyUnit())) {
+            if ("YEAR".equals(item.getDurationUnit())) {
+                numberOfPayments = item.getDurationValue() * 12;
+            } else {
+                numberOfPayments = item.getDurationValue();
+            }
+        } else if ("YEAR".equals(item.getPaymentFrequencyUnit())) {
+            numberOfPayments = item.getDurationValue();
+        }
+
+        double paymentAmount = (item.getTotalAmount() != null && numberOfPayments > 0)
+                ? item.getTotalAmount() / numberOfPayments
+                : 0.0;
+
         if ("ONCE".equals(item.getPaymentFrequencyUnit())) {
             ItemPaymentRecord record = new ItemPaymentRecord();
             record.setItem(item);
             record.setDueDate(endDate);
             record.setPaymentStatus("YAPILMADI");
+            record.setAmount(item.getTotalAmount());
             records.add(record);
             return records;
         }
 
+        int paymentIndex = 0;
+        while (!current.isAfter(endDate) && paymentIndex < numberOfPayments) {
             ItemPaymentRecord record = new ItemPaymentRecord();
             record.setItem(item);
             record.setDueDate(current);
             record.setPaymentStatus("YAPILMADI");
+            record.setAmount(paymentAmount);
             records.add(record);
 
+            paymentIndex++;
             if ("MONTH".equals(item.getPaymentFrequencyUnit())) {
                 current = current.plusMonths(item.getPaymentFrequencyValue());
             } else if ("YEAR".equals(item.getPaymentFrequencyUnit())) {

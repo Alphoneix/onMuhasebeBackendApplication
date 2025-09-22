@@ -23,5 +23,4 @@ public class ExpenseController {
     private Expense addExpense(@RequestBody Expense expense) {
         return expenseService.addExpense(expense);
     }
-
 }

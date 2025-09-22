@@ -1,6 +1,5 @@
 package com.yalcin.alptekin.onmuhasebebackendv2.expense;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,5 +13,4 @@ public class Expense {
 
     @Column(name = "expense-amount")
     private Double amount;
-
 }

@@ -2,7 +2,6 @@ package com.yalcin.alptekin.onmuhasebebackendv2.item;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDate;
 
 @Data

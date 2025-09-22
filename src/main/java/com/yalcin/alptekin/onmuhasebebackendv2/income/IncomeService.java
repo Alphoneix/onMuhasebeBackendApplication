@@ -18,5 +18,4 @@ public class IncomeService {
     public Income addIncome(Income income) {
         return incomeRepository.save(income);
     }
-
 }

@@ -1,5 +1,6 @@
 package com.yalcin.alptekin.onmuhasebebackendv2.item;
 
+import lombok.Data;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -36,8 +37,14 @@ public class ItemController {
     }
 
     @PutMapping("/payment-records/{id}")
-    public ItemPaymentRecord updatePaymentRecord(@PathVariable Long id, @RequestBody UpdatePaymentRecordRequest request) {
-        return itemService.updatePaymentRecord(id, request.getStatus(), request.getPaymentDate());
+    public ItemPaymentRecord updatePaymentRecord(@PathVariable Long id, @RequestBody UpdatePaymentRecordRequest body) {
+        return itemService.updatePaymentRecord(id, body.getStatus(), body.getPaymentDate());
+    }
+
+    @Data
+    public static class UpdatePaymentRecordRequest {
+        private String status;
+        private LocalDate paymentDate;
     }
 }
 

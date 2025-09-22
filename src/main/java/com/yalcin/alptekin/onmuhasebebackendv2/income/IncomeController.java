@@ -1,6 +1,5 @@
 package com.yalcin.alptekin.onmuhasebebackendv2.income;
 
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,12 +15,12 @@ public class IncomeController {
     }
 
     @GetMapping
-    public List<Income> getIncomes() {
+    private List<Income> getAllIncomes() {
         return incomeService.getAllIncomes();
     }
 
     @PostMapping
-    public Income addIncome(@RequestBody Income income) {
+    private Income addIncome(@RequestBody Income income) {
         return incomeService.addIncome(income);
     }
 }

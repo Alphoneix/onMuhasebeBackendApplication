@@ -92,7 +92,9 @@ public class ItemService {
     }
 
     public List<ItemPaymentRecord> getPaymentRecordsByStatus(String status) {
-        return paymentRecordRepository.findByPaymentStatus(status);
+        return paymentRecordRepository.findAll().stream()
+                .filter(record -> record.getPaymentStatus().equals(status))
+                .toList();
     }
 
     public ItemPaymentRecord updatePaymentRecord(Long id, String status, LocalDate paymentDate) {

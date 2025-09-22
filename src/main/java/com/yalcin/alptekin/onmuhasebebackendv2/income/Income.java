@@ -13,5 +13,6 @@ public class Income {
 
     @Column(name = "income-amount")
     private Double amount;
+    //aaaa
 
 }
